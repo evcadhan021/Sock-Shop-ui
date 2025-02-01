@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:page_transition/page_transition.dart';
+
+import '../view/detail_page.dart';
 
 class MakeCard extends StatelessWidget {
   final dynamic context;
@@ -16,7 +19,15 @@ class MakeCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {},
+      onTap: () {
+        Navigator.push(
+          context,
+          PageTransition(
+            type: PageTransitionType.fade,
+            child: const DetailPage(),
+          ),
+        );
+      },
       child: AspectRatio(
         aspectRatio: 4 / 5,
         child: Container(
@@ -29,6 +40,19 @@ class MakeCard extends StatelessWidget {
                 endColor,
               ],
               begin: Alignment.topLeft,
+            ),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.grey[350] ?? Colors.grey,
+                blurRadius: 10,
+                offset: const Offset(5, 10),
+              ),
+            ],
+          ),
+          child: Center(
+            child: Image.asset(
+              image,
+              width: 100,
             ),
           ),
         ),
